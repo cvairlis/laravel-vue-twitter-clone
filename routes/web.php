@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::check()) {
-        return redirect('/home');
-    } else {
-        return view('auth.login');
-    }
-});
+Route::get('/', ['middleware' =>'guest', function(){
+    return view('auth.login');
+}]);
 
 Auth::routes();
 
