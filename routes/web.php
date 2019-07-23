@@ -18,3 +18,8 @@ Route::get('/', ['middleware' =>'guest', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/timeline', function (){
+    return view('timeline');
+});
+
