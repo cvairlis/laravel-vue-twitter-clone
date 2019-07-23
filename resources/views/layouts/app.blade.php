@@ -36,7 +36,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('timeline') }}">{{ __('Timeline') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Timeline') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('profile').'/'.Auth::user()->username }}">{{ __('My Profile') }}</a>
