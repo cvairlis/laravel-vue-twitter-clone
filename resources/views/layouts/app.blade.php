@@ -33,7 +33,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto pt-2">
                         @auth
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Timeline') }}</a>
