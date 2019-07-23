@@ -19,7 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timeline', function (){
-    return view('timeline');
-});
+Route::get('/timeline', 'TimelineController@index')->name('timeline');
 
+Route::get('/profile/{username}', 'ProfileController@show');
+
+Route::get('/tweet/post', 'PostController@show');
+
+Route::get('/users/list', 'UsersListController@show');
