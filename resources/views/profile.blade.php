@@ -3,18 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="card">
-                    <div class="card-header">My Profile</div>
+                    <div class="card-header d-flex flex-row pb-0" style="border:none;">
+                        <div class="p-2">Dear <strong>{{ $username }}</strong> Welcome to your Profile</div>
+                    </div>
                     <div class="card-body">
-                        @if (Auth::check())
-                            <div class="alert alert-success" role="alert">
-                                You are logged in!
-                            </div>
 
-                        @else
-                            You have to <a href="{{ route('login') }}">login</a> in order to continue.
-                        @endauth
 
                     </div>
                 </div>
