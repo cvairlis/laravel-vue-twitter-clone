@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-class PostController extends Controller
+class PostsController extends Controller
 {
     public function show()
     {
