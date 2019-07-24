@@ -32,19 +32,24 @@
             </div>
         </div>
 
-        @foreach ($user->posts as $post)
+        @foreach ($posts as $post)
         <div class="row justify-content-center pt-4">
             <div class="col-md-7">
                 <div class="card p-2">
                     <div class="card-header">
                         <div>At {{ $post->created_at->format('d-m-Y H:i:s') }} user <strong>{{ $user->username }}</strong> tweeted the following: </div>
                     </div>
-                        <div class="card-body">
-                            {{ $post->body }}
-                        </div>
+                    <div class="card-body">
+                        {{ $post->body }}
+                    </div>
                 </div>
             </div>
         </div>
         @endforeach
+        <div class="row justify-content-center pt-4">
+            <div class="col-md-7">
+                {{ $posts->links() }}
+            </div>
+        </div>
     </div>
 @endsection

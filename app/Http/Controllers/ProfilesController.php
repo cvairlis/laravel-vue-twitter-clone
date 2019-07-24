@@ -11,9 +11,11 @@ class ProfilesController extends Controller
     {
         $user = User::where('username', $username)->firstOrFail();
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        $posts=$user->posts()->paginate(5);
         return view('profiles.index',[
             'user' => $user,
             'follows' => $follows,
+            'posts' => $posts,
         ]);
     }
 }
