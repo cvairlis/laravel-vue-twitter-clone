@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
@@ -33,9 +34,18 @@ class PostsController extends Controller
     {
         $data = request()->validate([
             'body'  => 'required',
+            'image'  => ['image'],
         ]);
 
-        auth()->user()->posts()->create($data);
+        $path = request('image')->store('uploads','public');
+
+        $image = Image::make(public_path("storage/{$path}"))->fit(500,250);
+        $image->save();
+
+        auth()->user()->posts()->create([
+            'body' => $data['body'],
+            'image' => $path,
+        ]);
 
         return redirect('/home');
 

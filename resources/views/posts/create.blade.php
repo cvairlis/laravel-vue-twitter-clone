@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header"><h3>Post Tweet</h3></div>
                 <div class="card-body">
@@ -11,9 +11,21 @@
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <textarea rows="4" maxlength="280" id="body" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" autofocus style="resize:none;"></textarea>
+                                <textarea rows="4" maxlength="280" id="body" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" required autofocus style="resize:none;"></textarea>
 
                                 @error('body')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+
+                                @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

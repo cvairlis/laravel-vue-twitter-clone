@@ -9,7 +9,7 @@ class Post extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'user_id', 'body',
+        'user_id', 'body', 'image'
     ];
 
     public function user()

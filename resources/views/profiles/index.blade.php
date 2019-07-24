@@ -40,7 +40,14 @@
                         <div>At {{ $post->created_at->format('d-m-Y H:i:s') }} user <strong>{{ $user->username }}</strong> tweeted the following: </div>
                     </div>
                     <div class="card-body">
-                        {{ $post->body }}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pb-2"><img src="/storage/{{ $post->image }}" alt=""></div>
+                            </div>
+                            <div class="col-md-12">
+                                {{ $post->body }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

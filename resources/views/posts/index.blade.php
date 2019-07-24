@@ -12,7 +12,14 @@
                         </div>
 
                         <div class="card-body d-flex flex-row pt-0">
-                            <div class="p-3 pl-4">{{ $post->body }}</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pb-2"><img src="/storage/{{ $post->image }}" alt=""></div>
+                                </div>
+                                <div class="col-md-12">
+                                    {{ $post->body }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @empty
