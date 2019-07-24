@@ -9,8 +9,7 @@ class ProfilesController extends Controller
 {
     public function index($username)
     {
-        $userFromDatabase = DB::table('Users')->where('username', '=', $username)->first();
-        $user = User::findOrFail($userFromDatabase->id);
+        $user = User::where('username', $username)->firstOrFail();
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
         return view('profiles.index',[
             'user' => $user,
