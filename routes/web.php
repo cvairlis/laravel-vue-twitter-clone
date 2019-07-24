@@ -18,15 +18,15 @@ Route::get('/', ['middleware' =>'guest', function(){
 }]);
 
 Route::group(['middleware' => 'auth'], function () {
-
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/profile/{username}', 'ProfilesController@index')->name('profile.show');
 
     Route::get('/post/tweet', 'PostsController@create')->name('tweet.show');
-
     Route::post('/post', 'PostsController@store')->name('tweet.store');
 
     Route::get('/users/list', 'UsersListController@show');
+
+    Route::post('/follow/{user}', 'FollowsController@store')->name('follows.store');
 });
 
