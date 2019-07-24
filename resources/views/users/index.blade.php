@@ -20,6 +20,7 @@
                 @empty
                     <p>No users</p>
                 @endforelse
+                {{ $users->links() }}
             </div>
         </div>
     </div>
