@@ -11,16 +11,20 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', ['middleware' =>'guest', function(){
     return view('auth.loginRegister');
 }]);
 
-Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile/{username}', 'ProfileController@show');
+    Route::get('/profile/{username}', 'ProfileController@index')->name('profile.show');
 
-Route::get('/tweet/post', 'PostController@show');
+    Route::get('/tweet/post', 'PostController@show');
 
-Route::get('/users/list', 'UsersListController@show');
+    Route::get('/users/list', 'UsersListController@show');
+});
+
