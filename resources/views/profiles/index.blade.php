@@ -16,8 +16,8 @@
                         <div>Email: <strong>{{ $user->email }}</strong></div>
                         <div class="row h-100 justify-content-center align-items-center">
                             <div class="p-2">Total tweets: <strong> {{ $user->posts->count() }}</strong></div>
-                            <div class="p-2">Total followers: <strong>  </strong></div>
-                            <div class="p-2">Total following: <strong>  </strong></div>
+                            <div class="p-2">Total followers: <strong> {{ $user->profile->followers->count() }} </strong></div>
+                            <div class="p-2">Total following: <strong> {{ $user->following->count() }} </strong></div>
                         </div>
                     </div>
                 </div>
