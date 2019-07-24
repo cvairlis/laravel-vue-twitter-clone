@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use http\Client\Curl\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
-
-class ProfileController extends Controller
+class ProfilesController extends Controller
 {
     public function index($username)
     {
         $userFromDatabase = DB::table('Users')->where('username', '=', $username)->first();
-        return view('profile',[
-            'user' => $userFromDatabase
+        $user = User::findOrFail($userFromDatabase->id);
+        return view('profiles.index',[
+            'user' => $user
         ]);
     }
 }
