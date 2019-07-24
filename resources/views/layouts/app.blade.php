@@ -42,7 +42,7 @@
                                 <a class="nav-link" href="{{ url('profile').'/'.Auth::user()->username }}">{{ __('My Profile') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/tweet/post') }}">{{ __('Post a tweet') }}</a>
+                                <a class="nav-link" href="{{ url('/post/tweet') }}">{{ __('Post a tweet') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/users/list') }}">{{ __('Users list') }}</a>
