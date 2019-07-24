@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UsersListController extends Controller
 {
-    public function show()
+    public function index()
     {
-        return view('users');
+        $users = User::where('id', '!=', auth()->id())->get();
+        return view('users.index', compact('users'));
     }
 }
