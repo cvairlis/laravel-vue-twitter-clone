@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="d-flex pb-3">
                             <h3 class="pt-2">Username: <strong>{{ $user->username }}</strong></h3>
-                            <button class="btn btn-primary ml-4">Follow</button>
+                            <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                         </div>
                         <div>Email: <strong>{{ $user->email }}</strong></div>
                         <div class="row h-100 justify-content-center align-items-center">
