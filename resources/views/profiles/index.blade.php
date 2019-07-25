@@ -15,7 +15,7 @@
                                 @if (Auth::id() != $user->id)
                                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                                 @else
-                                    <button class="btn btn-primary ml-4">Edit profile</button>
+                                    <a href="/profile/{{ $user->username }}/edit" class="btn btn-primary ml-4">Edit profile</a>
                                 @endif
                             </div>
                         </div>
