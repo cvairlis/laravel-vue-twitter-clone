@@ -34,7 +34,9 @@ class PostsController extends Controller
     {
         $data = request()->validate([
             'body'  => ['required','size:140'],
-            'image'  => ['image'],
+            'image'  => ['image','mimes:jpeg,bmp,png','size:1024'],
+        ],[
+            'image.size' => 'The image size must not be greater than 1MB.',
         ]);
 
         $path='';
