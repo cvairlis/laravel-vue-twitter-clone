@@ -1750,6 +1750,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/follow/' + this.userId).then(function (response) {
         _this.status = !_this.status;
         console.log(response.data);
+
+        if (_this.status === true) {
+          axios.post('/email/followed/' + _this.userId);
+        }
       });
     }
   },

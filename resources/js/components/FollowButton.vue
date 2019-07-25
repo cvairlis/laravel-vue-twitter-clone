@@ -20,6 +20,9 @@
                     .then(response => {
                         this.status=!this.status;
                         console.log(response.data);
+                        if (this.status===true){
+                            axios.post('/email/followed/'+this.userId);
+                        }
                     })
             }
         },

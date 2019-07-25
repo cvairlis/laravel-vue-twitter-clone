@@ -30,5 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/list', 'UsersListController@index')->name('users.show');
 
     Route::post('/follow/{user}', 'FollowsController@store')->name('follows.store');
+
+    Route::post('/email/followed/{user}', 'UsersController@update')->name('user.update');
 });
 
