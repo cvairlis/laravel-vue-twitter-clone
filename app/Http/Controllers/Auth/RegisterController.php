@@ -68,7 +68,6 @@ class RegisterController extends Controller
             'email' => $data['register_email'],
             'password' => Hash::make($data['register_password']),
         ]);
-        $user->profile()->save(new Profile);
         return $user;
     }
 }
