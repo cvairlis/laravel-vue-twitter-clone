@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'PostsController@index')->name('home');
 
     Route::get('/profile/{username}', 'ProfilesController@index')->name('profile.show');
+    Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
+    Route::patch('/profile/{username}', 'ProfilesController@update')->name('profile.update');
 
     Route::get('/post/tweet', 'PostsController@create')->name('tweet.show');
     Route::post('/post', 'PostsController@store')->name('tweet.store');

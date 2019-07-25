@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-7">
+        <div class="col-lg-7">
+            <h3><strong>Post Tweet</strong></h3>
             <div class="card">
-                <div class="card-header"><h3>Post Tweet</h3></div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('tweet.store') }}" enctype="multipart/form-data">
                         @csrf

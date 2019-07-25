@@ -33,14 +33,14 @@ class PostsController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'body'  => ['required','size:140'],
-            'image'  => ['image','mimes:jpeg,bmp,png','size:1024'],
+            'body' => ['required','max:140'],
+            'image' => ['image','mimes:jpg,jpeg,bmp,png','max:1024'],
         ],[
-            'image.size' => 'The image size must not be greater than 1MB.',
+            'image.max' => 'The image size must not be greater than 1MB.',
         ]);
 
         $path='';
-        if (request()->filled('image')) {
+        if (request('image')) {
             $path = request('image')->store('uploads','public');
             $image = Image::make(public_path("storage/{$path}"  ))->fit(500,250);
             $image->save();
