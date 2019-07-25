@@ -33,14 +33,16 @@ class PostsController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'body'  => 'required',
+            'body'  => ['required','size:140'],
             'image'  => ['image'],
         ]);
 
-        $path = request('image')->store('uploads','public');
-
-        $image = Image::make(public_path("storage/{$path}"))->fit(500,250);
-        $image->save();
+        $path='';
+        if (request()->filled('image')) {
+            $path = request('image')->store('uploads','public');
+            $image = Image::make(public_path("storage/{$path}"  ))->fit(500,250);
+            $image->save();
+        }
 
         auth()->user()->posts()->create([
             'body' => $data['body'],
@@ -48,6 +50,5 @@ class PostsController extends Controller
         ]);
 
         return redirect('/home');
-
     }
 }
