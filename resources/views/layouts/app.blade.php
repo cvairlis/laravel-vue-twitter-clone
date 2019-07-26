@@ -39,13 +39,13 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Timeline') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('profile').'/'.Auth::user()->username }}">{{ __('My Profile') }}</a>
+                                <a class="nav-link" href="{{ route('profile.show', ['username' => auth()->user()->username]) }}">{{ __('My Profile') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/post/tweet') }}">{{ __('Post a tweet') }}</a>
+                                <a class="nav-link" href="{{ route('tweet.show') }}">{{ __('Post a tweet') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/users/list') }}">{{ __('Users list') }}</a>
+                                <a class="nav-link" href="{{ route('users.show') }}">{{ __('Users list') }}</a>
                             </li>
                         @endauth
                     </ul>
