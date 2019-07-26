@@ -17,20 +17,20 @@ Route::get('/', ['middleware' =>'guest', function(){
     return view('auth.loginRegister');
 }]);
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', 'PostsController@index')->name('home');
 
-    Route::get('/profile/{username}', 'ProfilesController@index')->name('profile.show');
-    Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
-    Route::patch('/profile/{username}', 'ProfilesController@update')->name('profile.update');
+Route::get('/home', 'PostsController@index')->name('home');
 
-    Route::get('/post/tweet', 'PostsController@create')->name('tweet.show');
-    Route::post('/post', 'PostsController@store')->name('tweet.store');
+Route::get('/profile/{username}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('/profile/{username}', 'ProfilesController@update')->name('profile.update');
 
-    Route::get('/users/list', 'UsersListController@index')->name('users.show');
+Route::get('/post/tweet', 'PostsController@create')->name('tweet.show');
+Route::post('/post', 'PostsController@store')->name('tweet.store');
 
-    Route::post('/follow/{user}', 'FollowsController@store')->name('follows.store');
+Route::get('/users/list', 'UsersListsController@index')->name('users.show');
 
-    Route::post('/email/followed/{user}', 'UsersController@update')->name('user.update');
-});
+Route::post('/follow/{user}', 'FollowsController@store')->name('follows.store');
+
+Route::post('/email/followed/{user}', 'UsersController@update')->name('user.update');
+
 
