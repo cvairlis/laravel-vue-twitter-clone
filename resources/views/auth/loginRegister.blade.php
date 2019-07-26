@@ -3,10 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6 mb-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
-
+                    <div class="card-header"><h3>{{ __('Login') }}</h3></div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -57,9 +56,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header"><h3>{{ __('Register') }}</h3></div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
