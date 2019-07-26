@@ -32,12 +32,7 @@ class PostsController extends Controller
 
     public function store()
     {
-        $data = request()->validate([
-            'body' => ['required','max:140'],
-            'image' => ['image','mimes:jpg,jpeg,bmp,png','max:1024'],
-        ],[
-            'image.max' => 'The image size must not be greater than 1MB.',
-        ]);
+        $data = $this->validateRequest();
 
         $path='';
         if (request('image')) {
@@ -52,5 +47,15 @@ class PostsController extends Controller
         ]);
 
         return redirect('/home');
+    }
+
+    private function validateRequest()
+    {
+        return request()->validate([
+            'body' => ['required','max:140'],
+            'image' => ['image','mimes:jpg,jpeg,bmp,png','max:1024'],
+        ],[
+            'image.max' => 'The image size must not be greater than 1MB.',
+        ]);
     }
 }
