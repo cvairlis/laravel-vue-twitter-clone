@@ -8,6 +8,11 @@ use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     private function findUserFromUsername($username){
         return User::where('username', $username)->firstOrFail();
     }
