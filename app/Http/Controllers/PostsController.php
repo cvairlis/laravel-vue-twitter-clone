@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
@@ -58,6 +59,13 @@ class PostsController extends Controller
             'image' => $path,
         ]);
 
+        Self::incrementUsersTotalTweetsPosted(auth()->user());
+
         return redirect('/home');
+    }
+
+    private function incrementUsersTotalTweetsPosted(User $user)
+    {
+        return $user->increment('total_tweets_posted');
     }
 }
