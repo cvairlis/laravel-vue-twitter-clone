@@ -17,7 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'total_tweets_posted', 'total_followers',
+        'total_following', 'link_to_profile', 'link_to_avatar'
     ];
 
     /**
@@ -26,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'id', 'name', 'email_verified_at', 'created_at', 'updated_at','password', 'remember_token',
     ];
 
     /**
@@ -44,6 +45,10 @@ class User extends Authenticatable
 
         static::created(function ($user){
             $user->profile()->create();
+            $data = [
+                'link_to_profile' => request()->root().'/profile/'.$user->username,
+            ];
+            $user->update($data);
         });
     }
 
