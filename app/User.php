@@ -61,4 +61,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Profile::class);
     }
+
+    public function pageViews()
+    {
+        return $this->hasMany(PageView::class);
+    }
+
 }
