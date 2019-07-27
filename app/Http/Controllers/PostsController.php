@@ -12,10 +12,23 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    private function validateRequest()
+    {
+        $request = request()->validate([
+            'body' => ['required','max:140'],
+            'image' => ['image','mimes:jpg,jpeg,bmp,png','max:1024'],
+        ],[
+            'image.max' => 'The image size must not be greater than 1MB.',
+        ]);
+
+        return $request;
+    }
+
     public function index()
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
         $posts = Post::whereIn('user_id', $users)->latest()->paginate(5);
+        
         return view('posts.index', compact('posts'));
     }
 
@@ -46,15 +59,5 @@ class PostsController extends Controller
         ]);
 
         return redirect('/home');
-    }
-
-    private function validateRequest()
-    {
-        return request()->validate([
-            'body' => ['required','max:140'],
-            'image' => ['image','mimes:jpg,jpeg,bmp,png','max:1024'],
-        ],[
-            'image.max' => 'The image size must not be greater than 1MB.',
-        ]);
     }
 }

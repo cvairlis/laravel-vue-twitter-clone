@@ -13,8 +13,11 @@ class ProfilesController extends Controller
         $this->middleware('auth');
     }
 
-    private function findUserFromUsername($username){
-        return User::where('username', $username)->firstOrFail();
+    private function findUserFromUsername($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+
+        return $user;
     }
 
     public function index($username)
@@ -22,17 +25,15 @@ class ProfilesController extends Controller
         $user = $this->findUserFromUsername($username);
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
         $posts=$user->posts()->paginate(5);
-        return view('profiles.index',[
-            'user' => $user,
-            'follows' => $follows,
-            'posts' => $posts,
-        ]);
+
+        return view('profiles.index', compact('user','follows', 'posts'));
     }
 
     public function edit($username)
     {
         $user = $this->findUserFromUsername($username);
         $this->authorize('update', $user->profile);
+
         return view('profiles.edit', compact('user'));
     }
 
