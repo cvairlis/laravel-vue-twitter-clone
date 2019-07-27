@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class StoreVisitedPage
 {
@@ -15,13 +16,16 @@ class StoreVisitedPage
      */
     public function handle($request, Closure $next)
     {
-        $user_id = auth()->user()->id;
-        $path = $request->path();
-        auth()->user()->pageViews()->create([
-            'user_id' => $user_id,
-            'path' => $path
-        ]);
-
+        if (Auth::check())
+        {
+            $user_id = auth()->user()->id;
+            $path = $request->path();
+            auth()->user()->pageViews()->create([
+                'user_id' => $user_id,
+                'path' => $path
+            ]);
+        }
         return $next($request);
+
     }
 }
