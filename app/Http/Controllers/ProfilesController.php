@@ -57,6 +57,10 @@ class ProfilesController extends Controller
             auth()->user()->profile->update(array_merge(
                 $data, ['image' => $path]
             ));
+
+            auth()->user()->update([
+                'link_to_avatar' => request()->root().'/storage/'.$path,
+            ]);
         }
         else
         {
