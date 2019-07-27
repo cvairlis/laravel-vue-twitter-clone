@@ -18,6 +18,29 @@ class FollowsController extends Controller
 
     public function store(User $user)
     {
-        return auth()->user()->following()->toggle($user->profile);
+        $toggle = auth()->user()->following()->toggle($user->profile);
+
+        Self::updateUsersTotalFollowing(auth()->user());
+        Self::updateUsersTotalFollowers($user);
+
+        return $toggle;
+    }
+
+    private function updateUsersTotalFollowing(User $user)
+    {
+        $data = [
+            'total_following' => $user->following->count(),
+        ];
+
+        return $user->update($data);
+    }
+
+    private function updateUsersTotalFollowers(User $user)
+    {
+        $data = [
+            'total_followers' => $user->profile->followers->count(),
+        ];
+
+        return $user->update($data);
     }
 }
