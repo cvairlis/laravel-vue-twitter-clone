@@ -13,6 +13,7 @@ class UsersListsController extends BaseController
 {
     public function index()
     {
+        /*
         $users = Cache::remember('user.cache',
             now()->addSeconds(60), function (){
             return DB::table('users')->select( 'username',
@@ -23,7 +24,29 @@ class UsersListsController extends BaseController
                 'link_to_profile',
                 'link_to_avatar')->get();
         });
+        */
 
-        return $this->sendResponse($users->toArray(), 'Users retrieved successfully.');
+        $array = array();
+
+        $users = Cache::remember('user.cache',
+            now()->addSeconds(60), function (){
+                $users = User::all();
+                foreach ($users as $user) {
+                    $array[] = array(
+                        'usename' => $user->username,
+                        'email' => $user->email,
+                        'total_followers' => $user->profile->followers->count(),
+                        'total_following' => $user->following->count(),
+                        'total_tweets_posted' => $user->posts->count(),
+                        'link_to_user_profile' => request()->root().'/profile/'.$user->username,
+                        'link_to_user_avatar' => request()->root().'/storage/'.$user->profile->image,
+                    );
+                }
+
+                return $array;
+            });
+
+
+        return $this->sendResponse($users, 'Users retrieved successfully.');
     }
 }
