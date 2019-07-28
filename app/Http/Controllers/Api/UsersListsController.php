@@ -13,13 +13,16 @@ class UsersListsController extends BaseController
 {
     public function index()
     {
-        $users = DB::table('users')->select( 'username',
+        $users = Cache::remember('user.cache',
+            now()->addSeconds(60), function (){
+            return DB::table('users')->select( 'username',
                 'email',
                 'total_followers',
                 'total_following',
                 'total_tweets_posted',
                 'link_to_profile',
                 'link_to_avatar')->get();
+        });
 
         return $this->sendResponse($users->toArray(), 'Users retrieved successfully.');
     }
