@@ -6,6 +6,11 @@ use App\Post;
 use App\User;
 use Intervention\Image\Facades\Image;
 
+/**
+ * Class PostsController
+ * @package App\Http\Controllers
+ *
+ */
 class PostsController extends Controller
 {
     public function __construct()
@@ -13,6 +18,14 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Validates the incoming request
+     *
+     * Gets the request, sets the ruls and validate it.
+     * Returns the validated request.
+     *
+     * @return request
+     */
     private function validateRequest()
     {
         $request = request()->validate([
@@ -25,6 +38,15 @@ class PostsController extends Controller
         return $request;
     }
 
+    /**
+     * Creates the Users List.
+     *
+     * For the authenticated user gets their followings
+     * finds their posts and paginate them.
+     * Returns the posts list to the post.index view.
+     *
+     * @return view posts.index
+     */
     public function index()
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
