@@ -13,7 +13,13 @@
                 @empty
                     <p>No users</p>
                 @endforelse
-                {{ $users->links() }}
+
+
+                <div class="row justify-content-center pt-2">
+                    <div class="col-lg-7">
+                        {{ $users->links() }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
