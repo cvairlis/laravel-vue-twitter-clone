@@ -1,72 +1,132 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Building a Twitter Clone using Laravel and Vue
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This is a demo application that has been requested by to demonstrate my experience on Laravel. It is showing how to build a [simple twitter clone](https://github.com/greekit/vairlis_betadvanced_project) using Laravel and Vue.
 
-## About Laravel
+### All Features
+- Guests users can only see login and registration form.
+- Guests can register and login 
+- Users can Post a tweet including image
+- Users can see and edit their profile page
+- Users can upload avatar within the profile edit feature
+- Users can see their tweets within their profile page
+- Users can see a Users List with all the registered Users
+- Users can follow / unfollow other registered users
+- Users can see Timeline page which includes a list of all tweets from users they follow
+- Added ability of pagination on each page
+- Ability of sending an email to the user when he has a new follower.
+- Ability of a database table there is stored every page the user has visited and DateTime for every record
+- Small amount of Feature and Unit testing with PHPUnit
+- Refactored some parts of the code to be more readable, reusable code (DRY)
+- Simple API
+    - /api/users to get a list with all users.
+    - /api/statistics a list with all visited routes on the last 24 hours.
+    - Caching API results for 1 minute
+- PHPDoc comments methods, properties etc.
+- README.md with instructions on how to set up and run this application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Getting Started
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Learning Laravel
+### Prerequisites
+What things you need to install the software.
+- Composer
+- Node Package Manager (I used npm)
+- Git
+- PHP >= 7.2.18
+- Laravel CLI
+- Webserver like Nginx or Apache
+- Node Package Manager (I used npm)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Clone the git repository on your computer
 
-## Laravel Sponsors
+    $ git clone https://github.com/greekit/vairlis_betadvanced_project.git twitter_clone_project
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+You can also download the entire repository as a zip file and unpack in on your computer if you do not have git.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+After cloning the application, you need to install it's dependencies.
 
-## Contributing
+    $ cd twitter_clone_project
+    $ composer install
+    
+### Setup
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- When you are done with installation, copy the .env.example file to .env
 
-## Security Vulnerabilities
+        $ cp .env.example .env
+        
+- Generate the application key
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        $ php artisan key:generate
 
-## License
+- Install node modules
+        
+        $ npm install
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Setup .env file
+
+    APP_NAME="Laravel Twitter Clone"  
+    APP_ENV=local  
+    APP_KEY=base64:mAHpn8AQgCxP1fkVZQPYUlieOR4XPkPGShfMfCZNNWY=  
+    APP_DEBUG=true  
+    APP_URL=http://localhost  
+    
+    LOG_CHANNEL=stack  
+    
+    DB_CONNECTION=mysql  
+    DB_HOST=127.0.0.1  
+    DB_PORT=3306  
+    DB_DATABASE=twitter_clone  
+    DB_USERNAME=root  
+    DB_PASSWORD=  
+    
+    BROADCAST_DRIVER=log  
+    CACHE_DRIVER=file  
+    QUEUE_CONNECTION=sync  
+    SESSION_DRIVER=file  
+    SESSION_LIFETIME=120  
+    QUEUE_DRIVER=database  
+    
+    REDIS_HOST=127.0.0.1  
+    REDIS_PASSWORD=null  
+    REDIS_PORT=6379  
+    
+    MAIL_DRIVER=smtp  
+    MAIL_HOST=smtp.mailtrap.io  
+    MAIL_PORT=2525  
+    MAIL_USERNAME=9260151abe842c  
+    MAIL_PASSWORD=534d36382dca66  
+    MAIL_FROM_ADDRESS=from@example.com  
+    MAIL_FROM_NAME=Example  
+    
+    AWS_ACCESS_KEY_ID=  
+    AWS_SECRET_ACCESS_KEY=  
+    AWS_DEFAULT_REGION=us-east-1  
+    AWS_BUCKET=  
+    
+    PUSHER_APP_ID=  
+    PUSHER_APP_KEY=  
+    PUSHER_APP_SECRET=  
+    PUSHER_APP_CLUSTER=mt1  
+    
+    MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"  
+    MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"  
+        
+- Migrate the application
+
+        $ php artisan migrate
+        
+### Run the application
+    $ php artisan serve
+
+
+## Built With
+- Laravel - The PHP framework for building the API endpoints needed for the application
+- Vue - The Progressive JavaScript Framework for building interactive interfaces
+
+## Acknowledgments
+- Laravel - The excellent documentation explaining how to get started with Laravel and Laravel Passport made it easy to provide a step by step guide for beginners to follow the application
+- Vue - Concise documentation
