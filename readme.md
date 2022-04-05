@@ -43,7 +43,7 @@ What things you need to install the software.
 
 Clone the git repository on your computer
 
-    $ git clone https://github.com/greekit/laravel-vue-twitter-clone.git
+    $ git clone https://github.com/cvairlis/laravel-vue-twitter-clone.git
 
 You can also download the entire repository as a zip file and unpack in on your computer if you do not have git.
 
